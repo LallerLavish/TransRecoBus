@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransRecoBus</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+     <!-- <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+      #cursor {
+        display: inline-block;
+        font-weight: bold;
+        color: black;
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+
+      #preview {
+        max-width: 100%;
+        height: auto;
+        display: none;
+        margin-top: 10px;
+        border-radius: 10px;
+      }
+    </style>
+</head>
+<body>
+  <div id="outer">
+    <div id="loader"> 
+    <h1>Trans</h1> 
+    <h1>Reco</h1>  
+    <h1>Bus</h1>   
+  </div>
+  <div id="mainly">
+    <div id="page1">
+        <div id="nav">
+            <div id="logo">
+              <h3>TransRecoBus</h3>
+            </div>
+          
+            <div id="corner">
+              <!-- PLATFORM -->
+              <div class="nav-item">
+                <h3>Platform</h3>
+                <div class="dropdown">
+                  <a href="#">Feature 1</a>
+                  <a href="#">Feature 2</a>
+                  <a href="#">Feature 3</a>
+                  <a href="#">Feature 4</a>
+                </div>
+              </div>
+          
+              <!-- SOLUTIONS -->
+              <div class="nav-item">
+                <h3>Solutions</h3>
+                <div class="dropdown">
+                  <a href="#">Student</a>
+                  <a href="#">Teachers</a>
+                  <a href="#">Freelancers</a>
+                </div>
+              </div>
+          
+              <!-- RESOURCES -->
+              <div class="nav-item">
+                <h3>Resources</h3>
+                <div class="dropdown">
+                  <a href="#">Blog</a>
+                  <a href="#">Help Center</a>
+                  <a href="#">Contact</a>
+                </div>
+              </div>
+            </div>
+          </div>
+       <div class="page1content">
+        <div id="left">
+          <h3><span id="typewriter-text"></span><span id="cursor">|</span></h3>
+        <p>TranRecoBus enables you to automatically recognise text easily, edit seamlessly, collaborate effortlessly, and even merging with custom OpenAI for digitizing and interpreting historical documents of any form.</p>
+        </div>
+        <div id="right">
+          <video autoplay loop muted src="video.mp4"></video>
+        </div>
+      </div>   
+    </div>
+    <div id="main">
+        <div id="left">
+            <div id="leftcontent">
+                <div id="lefty">
+                  <h4 id="h4">“Bringing the personal touch back to digital notes.”<br>
+                    “Your typed notes, now in your handwriting.”</h4>
+                  <button id="input_btn">
+                    <label id="label" for="fileinput">Insert image</label>
+                  </button>
+                </div>
+                <form id="uploadForm" enctype="multipart/form-data" method="POST" action="/predict">
+                  <div id="img">
+                    <input type="file" id="fileinput" name="file" accept="image/*" placeholder="Insert"/> 
+                    <img id="preview" alt="Image preview" />
+                  </div>
+                  <div id="removebtn" class="page2">
+                    <button id="removeBtn" style="display: none;">Remove Image</button>
+                  </div>
+                  <div id="submitbtn">
+                    <button type="submit" id="submitBtn">Submit</button>
+                  </div>
+                </form>
+        </div>
+        </div>
+        <div id="right">
+          {% if text %}
+                <div id="extracted-text">
+                  <h2>Extracted Text:</h2>
+                  <p>{{ text }}</p>
+                </div>
+                {% endif %}
+        </div>
+    </div>
+    <div id="lastpage"></div>
+    <div class="footer">
+      <h3>Scan it. Take it. Trust it.</h3>
+      <h1>TransRecoBus</h1>
+      <p>TransRecoBus © 2025 — Empowering your documents with AI precision.</p>
+    </div>
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js" integrity="sha512-f6bQMg6nkSRw/xfHw5BCbISe/dJjXrVGfz9BSDwhZtiErHwk7ifbmBEtF9vFW8UNIQPhV2uEFVyI/UHob9r7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+  <script>
+    window.addEventListener("load", function () {
+      // Hide loader after 3 seconds to simulate animation
+      setTimeout(function() {
+        document.getElementById("loader").style.display = "none";  // Hide loader
+      }, 3000);
+
+      const textElement = document.getElementById("typewriter-text");
+      const textToType = "Space that gets handwritten notes!!";
+      let index = 0;
+      textElement.textContent = "";
+
+      function typeWriter() {
+        if (index < textToType.length) {
+          textElement.textContent += textToType.charAt(index);
+          index++;
+          setTimeout(typeWriter, 120);
+        }
+      }
+
+      // Start typing after loader animation ends (3s)
+      setTimeout(typeWriter, 2000);
+    });
+  </script>
+  </div>
+</body>
+</html>

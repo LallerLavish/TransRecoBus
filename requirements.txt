@@ -1,0 +1,11 @@
+opencv-python
+pytesseract
+pandas 
+numpy
+Pillow
+torchvision
+albumentations
+tensorflow
+matplotlib
+streamlit
+fastapi

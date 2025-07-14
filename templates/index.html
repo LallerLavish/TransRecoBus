@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TransRecoBus</title>
-     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+     <link rel="stylesheet" href="../static/style.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
      <!-- <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,114 +33,113 @@
     </style>
 </head>
 <body>
-  <div id="outer">
-    <div id="loader"> 
+  <div id="loader"> 
     <h1>Trans</h1> 
     <h1>Reco</h1>  
     <h1>Bus</h1>   
   </div>
-  <div id="mainly">
-    <div id="page1">
-        <div id="nav">
-            <div id="logo">
-              <h3>TransRecoBus</h3>
-            </div>
-          
-            <div id="corner">
-              <!-- PLATFORM -->
-              <div class="nav-item">
-                <h3>Platform</h3>
-                <div class="dropdown">
-                  <a href="#">Feature 1</a>
-                  <a href="#">Feature 2</a>
-                  <a href="#">Feature 3</a>
-                  <a href="#">Feature 4</a>
-                </div>
-              </div>
-          
-              <!-- SOLUTIONS -->
-              <div class="nav-item">
-                <h3>Solutions</h3>
-                <div class="dropdown">
-                  <a href="#">Student</a>
-                  <a href="#">Teachers</a>
-                  <a href="#">Freelancers</a>
-                </div>
-              </div>
-          
-              <!-- RESOURCES -->
-              <div class="nav-item">
-                <h3>Resources</h3>
-                <div class="dropdown">
-                  <a href="#">Blog</a>
-                  <a href="#">Help Center</a>
-                  <a href="#">Contact</a>
-                </div>
-              </div>
-            </div>
+  <div id="nav">
+      <div id="logo">
+        <h3>TransRecoBus</h3>
+      </div>
+    
+      <div id="corner">
+        <!-- PLATFORM -->
+        <div class="nav-item">
+          <h3>Platform</h3>
+          <div class="dropdown">
+            <a href="#">Feature 1</a>
+            <a href="#">Feature 2</a>
+            <a href="#">Feature 3</a>
+            <a href="#">Feature 4</a>
           </div>
-       <div class="page1content">
-        <div id="left">
-          <h3><span id="typewriter-text"></span><span id="cursor">|</span></h3>
-        <p>TranRecoBus enables you to automatically recognise text easily, edit seamlessly, collaborate effortlessly, and even merging with custom OpenAI for digitizing and interpreting historical documents of any form.</p>
         </div>
-        <div id="right">
-          <video autoplay loop muted src="video.mp4"></video>
+    
+        <!-- SOLUTIONS -->
+        <div class="nav-item">
+          <h3>Solutions</h3>
+          <div class="dropdown">
+            <a href="#">Student</a>
+            <a href="#">Teachers</a>
+            <a href="#">Freelancers</a>
+          </div>
         </div>
-      </div>   
+    
+        <!-- RESOURCES -->
+        <div class="nav-item">
+          <h3>Resources</h3>
+          <div class="dropdown">
+            <a href="#">Blog</a>
+            <a href="#">Help Center</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="main">
-        <div id="left">
-            <div id="leftcontent">
-                <div id="lefty">
-                  <h4 id="h4">“Bringing the personal touch back to digital notes.”<br>
-                    “Your typed notes, now in your handwriting.”</h4>
-                  <button id="input_btn">
-                    <label id="label" for="fileinput">Insert image</label>
-                  </button>
+  <div id="outer" data-scroll-container>
+  <section data-scroll-section id="mainly">
+    <div id="page1">
+        
+     <div class="page1content">
+      <div id="left">
+        <h3><span id="typewriter-text"></span><span id="cursor">|</span></h3>
+      <p>TranRecoBus enables you to automatically recognise text easily, edit seamlessly, collaborate effortlessly, and even merging with custom OpenAI for digitizing and interpreting historical documents of any form.</p>
+      </div>
+      <div id="right">
+        <!-- ../static/video-poster.jpg -->
+<video autoplay loop muted preload="none" playsinline poster=""></video>
+      </div>
+    </div>   
+  </div>
+  <div id="main">
+      <div id="left">
+          <div id="leftcontent">
+              <div id="lefty">
+                <h4 id="h4">“Bringing the personal touch back to digital notes.”<br>
+                  “Your typed notes, now in your handwriting.”</h4>
+                <label id="input_btn" for="fileinput">Insert Image</label>
+              </div>
+              <form id="uploadForm" enctype="multipart/form-data">
+                <div id="img">
+                  <input type="file" id="fileinput" name="file" accept="image/*" placeholder="Insert"/> 
+                  <img id="preview" alt="Image preview" />
                 </div>
-                <form id="uploadForm" enctype="multipart/form-data" method="POST" action="/predict">
-                  <div id="img">
-                    <input type="file" id="fileinput" name="file" accept="image/*" placeholder="Insert"/> 
-                    <img id="preview" alt="Image preview" />
-                  </div>
-                  <div id="removebtn" class="page2">
-                    <button id="removeBtn" style="display: none;">Remove Image</button>
-                  </div>
-                  <div id="submitbtn">
-                    <button type="submit" id="submitBtn">Submit</button>
-                  </div>
-                </form>
-        </div>
-        </div>
-        <div id="right">
-          {% if text %}
-                <div id="extracted-text">
-                  <h2>Extracted Text:</h2>
-                  <p>{{ text }}</p>
+                <div id="removebtn" class="page2">
+                  <button id="removeBtn" type="button" style="display: none;">Remove Image</button>
                 </div>
-                {% endif %}
-        </div>
-    </div>
-    <div id="lastpage"></div>
-    <div class="footer">
+                <div id="submitbtn">
+                  <button type="submit" id="submitBtn">Submit</button>
+                </div>
+              </form>
+      </div>
+      </div>
+      <div id="right">
+        <!-- style="display: none;" -->
+        <div id="result" ></div>
+      </div>
+  </div>
+  </section>
+    <div id="last">
+    <div id="lastpage" data-scroll-section></div>
+    <div class="footer" data-scroll data-scroll-class="in-view" data-scroll-offset="20%">
       <h3>Scan it. Take it. Trust it.</h3>
       <h1>TransRecoBus</h1>
       <p>TransRecoBus © 2025 — Empowering your documents with AI precision.</p>
-    </div>
   </div>
+  </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js" integrity="sha512-f6bQMg6nkSRw/xfHw5BCbISe/dJjXrVGfz9BSDwhZtiErHwk7ifbmBEtF9vFW8UNIQPhV2uEFVyI/UHob9r7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js" integrity="sha512-f6bQMg6nkSRw/xfHw5BCbISe/dJjXrVGfz9BSDwhZtiErHwk7ifbmBEtF9vFW8UNIQPhV2uEFVyI/UHob9r7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../static/script.js" defer></script>
   <script>
     window.addEventListener("load", function () {
       // Hide loader after 3 seconds to simulate animation
       setTimeout(function() {
         document.getElementById("loader").style.display = "none";  // Hide loader
-      }, 3000);
+      }, 4000);
 
       const textElement = document.getElementById("typewriter-text");
       const textToType = "Space that gets handwritten notes!!";
@@ -158,7 +157,21 @@
       // Start typing after loader animation ends (3s)
       setTimeout(typeWriter, 2000);
     });
+    window.addEventListener("load", () => {
+      const video = document.querySelector("video");
+      if (video) {
+        video.src = "../static/video.mp4";  // Set video src dynamically
+        video.load();
+        video.play().catch(() => {
+          // In case autoplay is blocked, handle here
+          console.log("Autoplay prevented. Waiting for user interaction.");
+        });
+      }
+    });
   </script>
-  </div>
+</div>
+<div id="imgOverlay" style="display:none; position: fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index: 10000; cursor: pointer;">
+  <img id="overlayImg" src="" alt="Zoomed Image" style="max-width: 90vw; max-height: 90vh; border-radius: 15px; box-shadow: 0 0 15px #000;">
+</div>
 </body>
 </html>

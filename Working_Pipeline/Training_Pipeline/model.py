@@ -7,41 +7,72 @@ from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras import backend as K
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from Utils.util import load_numpy
 
-input = load_numpy("input.npy")
-print(input)
+def load_numpy(file_path):
+    with open(file_path,'rb') as file:
+         return np.load(file)
+
+input = load_numpy("Resources/input.npy")
+
 
 input = input.reshape((-1, 256, 1024, 1)).astype(np.float32)
-label = load_numpy("labels.npy")
+label = load_numpy("Resources/labels.npy")
 
 max_len = 500
 import json
 
-with open("char_to_idx.json", "r") as f:
+with open("Resources/char_to_idx.json", "r") as f:
     char_to_idx = json.load(f)
+
+from tensorflow.keras.layers import Activation, Dropout, LayerNormalization,BatchNormalization
 
 model = Sequential()
 
-model.add(Input(shape=(256, 1024, 1)))  # 500 time steps, 1024 width, 1 channel
+model.add(Input(shape=(256, 1024, 1)))
 
-model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 1)))  # Downsample height only
+# Block 1
+model.add(Conv2D(64, (3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Conv2D(64, (3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 1)))  # downsample height only
+model.add(Dropout(0.25))
 
-model.add(Conv2D(128, (3, 3), padding='same', activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 1)))  # Downsample height only
+# Block 2
+model.add(Conv2D(128, (3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Conv2D(128, (3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 1)))
+model.add(Dropout(0.25))
 
-model.add(Conv2D(256, (3, 3), padding='same', activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 1)))  # Downsample height only
+# Block 3
+model.add(Conv2D(256, (3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Conv2D(256, (3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 1)))
+model.add(Dropout(0.25))
 
-model.add(MaxPooling2D(pool_size=(1, 4)))  # Reduce width from 1024 to 256 to reduce GRU time steps
+# Final pooling on width to reduce time steps from 1024 to 256
+model.add(MaxPooling2D(pool_size=(1, 4)))
 
+# Prepare for recurrent layers
 model.add(Permute((2, 1, 3)))
-model.add(Reshape((256, -1)))  # Adjusted after pooling
+model.add(Reshape((256, -1)))
 
-model.add(Bidirectional(GRU(128, return_sequences=True)))
-model.add(Bidirectional(GRU(128, return_sequences=True)))
+# Normalize before RNN
+model.add(LayerNormalization())
+
+# BiGRU layers
+model.add(Bidirectional(GRU(256, return_sequences=True)))
+model.add(Bidirectional(GRU(256, return_sequences=True)))
 
 model.add(Dense(len(char_to_idx)+1, activation='softmax'))
 

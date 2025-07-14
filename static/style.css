@@ -10,14 +10,15 @@
 }
 #mainly{
   /* background-color: black; */
-    position: relative; 
-  z-index: 10;  
+  position: relative;
+  z-index: 10;
+  padding-bottom: 150px;
 }
 #page1{
-   color:white;
+   color:Black;
    height:100vh ;
    width:100%;
-   background-color: black;
+   background-color: white;
    border-bottom: 1px solid rgb(128, 125, 125);
 }
 .page1content{
@@ -35,10 +36,10 @@
   /* justify-content: space-evenly; */
 }
 .page1content #left #typewriter-text{
-  color:white;
+  color:black;
 }
 .page1content #left h3{
-  color: white;
+  color: black;
   padding-left: 30px;
   line-height: 2.2vw;
   font-size: 29px;
@@ -49,7 +50,7 @@
 .page1content #left p{
   height:20vh;
   font-size:25px;
-  color:white;
+  color:black;
   font-weight:350;
 }
 .page1content video{
@@ -64,16 +65,15 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index:1000;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1vw 4vw;
-  background: rgba(92, 67, 67, 0.1); /* Transparent white */
+  background: rgba(0, 0, 0, 0.091); /* Semi-transparent white */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px); /* For Safari */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  color: #dadada;
+  color: black;
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -109,15 +109,15 @@
 }
 
 .nav-item h3 {
-  color:#dadada;
+  color:rgba(0, 0, 0, 0.818);
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
   font-weight:400;
 }
 
 .nav-item:hover h3 {
-  color:white;
+  color:black;
 }
 
 /* Dropdowns */
@@ -126,7 +126,6 @@
   flex-direction: column;
   position: absolute;
   width: 20vw;
-
   top: 100%;
   background-color: grey;
   backdrop-filter: blur(15px);
@@ -157,20 +156,26 @@
 #fileinput{
    display: none;
 }
- #main{
-    height: 90vh;
-    width: 100%;
-    background-color: black;
-    display: flex;
-    /* position: relative; */
-
- }   
- #main #left{
-   height: 40vw;
-   width: 100%;
-   border:0.1vw dotted #dadada;
-   margin-top: 5vw;
- }
+#main {
+  height: 90vh;
+  width: 100%;
+  padding: 0 1vw;
+  /* background: url('pawel-czerwinski-f5ITyZ8pi5I-unsplash.jpg') no-repeat center center; */
+  background-color:white;
+  background-size: cover;
+  display: flex;
+  gap:1vw;
+}
+#main #left{
+  height: 40vw;
+  width: 100%;
+  border-radius:2vw;
+  margin-top: 5vw;
+  margin-right:2px;
+  padding: 1.5vw;
+  border: 0.1vw solid black; 
+  background-color:white;
+}
  #left h4{
    font-weight: 100;
    /* display: flex; */
@@ -200,36 +205,45 @@
    font-size:24px;
    opacity:1;
    font-weight:400;
-   color:white;
+   color:black;
  }
  #right p{
-  color:white;
+  color:black;
   padding:6vw;
  }
  #input_btn{
    position: relative;
    top: 50;
    margin-top: 15px;
-   border-radius: 1vw; 
+   border-radius: 4vw; 
    background: linear-gradient(90deg, orange, orangered);
    position: relative;
    height:50px;
    width: 150px;
    border:none;
+   text-align:center;
+   padding:1vw 0;
    font-size:15px;
-   color: black !important;
+   color: white !important;
    opacity: 0;
    transition: opacity 0.3s ease;
  }
- #input_btn:hover{
-  cursor:pointer;
+ #label:hover{
+    cursor:pointer;
  }
+ #input_btn:hover{
+    cursor:pointer;
+ }
+ /* #input_btn:hover{
+  cursor:pointer;
+ } */
  #leftcontent:hover #input_btn{
    opacity: 1;
-   color: black !important;
+   color: white !important;
    /* position: absolute; */
    /* /* z-index: 9; */
  }
+ 
 #leftcontent #img {
   /* background-color: yellow; */
   position: absolute;
@@ -237,7 +251,7 @@
   width: 35vw;
   height: 40vw;
   top: 0;
-  left: 15%;
+  left: 9%;
   overflow: hidden;
   display:none;
 }
@@ -251,32 +265,44 @@
 
 #removeBtn {
   height: 40px;
-  width: 120px;
+  width: 140px;
   position: absolute;
-  left: 80%;
+  left: 78%;
   top: 88%;
   font-size: 15px;
-  border-radius: 1vw;
+  border-radius: 4vw;
   border: none;
   background: linear-gradient(90deg, orange, red);
-  color: black;
+  color: white;
 }
 
 #removeBtn:hover {
   cursor: pointer;
 }
-#submitBtn{
+#submitBtn {
   height: 40px;
   width: 120px;
   position: absolute;
-  left: 80%;
+  left: 79.5%;
   top: 78%;
   font-size: 15px;
-  border-radius: 1vw;
+  border-radius: 4vw;
   border: none;
   background: linear-gradient(90deg, orange, red);
-  color: black;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
+#submitBtn:hover{
+  cursor:pointer;
+}
+/* #leftcontent:hover #submitBtn{
+   opacity: 1;
+   color: black !important;
+   /* position: absolute; */
+   /* z-index: 9; */
+  
 /* #leftcontent:hover #submit_btn{
    opacity: 1;
    color: black !important;
@@ -296,42 +322,102 @@
 
 
  #main #right{
-  position:relative;
-   height: 40vw;
-   width: 100%;
-   border:0.1vw dotted #dadada;
-   margin-top: 5vw;
-   
-   color:white;
+  overflow:hidden;
+  height: 40vw;
+  width: 100%;
+  border-radius:2vw;
+  margin-top: 5vw;
+  margin-right:2px;
+  padding: 1.5vw;
+  border: 0.1vw solid black;
+  background-color:white;
  }
  #main #right p{
   font-size:20px;
+  width:40%;
+ }
+#result {
+  position:relative;
+  overflow:hidden;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.1rem;
+  word-wrap: break-word;
+  word-break: break-word;
+  margin-top: 2px;
+  color: #222;
+  min-height: 100%;
+  max-width: 90%;
+  padding: 20px;
+  border-radius: 8px;
+  transition: opacity 0.3s ease-in-out;
+}
+#result div{
+  position:absolute;
+  bottom:0%;
+}
+#result h3{
+  display:flex;
+  flex-direction:column;
+  gap:1vw;
+}
+#result ul {
+  color:black;
+  text-decoration:none;
+  overflow:hidden;
+  margin-top: 20px;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+.download-link {
+  color: inherit;
+  text-decoration: none;
+}
+#result ul{
+  display:flex;
+  justify-content:space-between;
+  gap:2vw;
   width:100%;
- }
- #extracted-text{
-    height:100px;
-    width:400px;
-    color:white;
- }
- #lastpage{
-  height: 100vh;
+  color:black;
+  text-decoration:none;
+}
+#result ul li{
+  margin-right:2vw;
+}
+/* Optional cursor effect (if added in JS later) */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s step-start infinite;
+  margin-left: 5px;
+}
+
+/* #last{
+  width:100%;
+  background-color:yellow;
+} */
+#lastpage {
+  position: relative;
+  height: 98vh;
   width: 100%;
- }
- .footer{
-  height: 90vh;
-    width: 100%;
-    /* background-color: black; */
-    background: linear-gradient(90deg, orange, orangered);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    z-index: -9;
-    bottom: 0;
- }
- .footer h3{
+  background-color: transparent;
+}
+.footer {
+  position:absolute;
+  padding:2rem;
+  top:0;
+  margin-top:4vw;
+  background-color: white;
+  color: White;
+  height: 98vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 1;
+  transform: none;
+  background: linear-gradient(90deg,orange, orangered);
+}
+.footer h3{
   font-size: 5vw;
   padding-top: 3vw;
  }
@@ -341,18 +427,28 @@
 .footer p{
   padding-bottom: 2vw;
 }
+
+.footer.in-view {
+  opacity: 1;
+}
+
+
 #loader{
   height: 100%;
   width: 100%;
   background-color: black;
   z-index: 9999;
   position: fixed;
-  top:0;
-  transition: all ease 0.5s;
+  top: 0;
+  left: 0; /* added */
+  transition: opacity 0.5s ease;
   display: flex;
   justify-content: center;
   align-items: center;
-
+}
+#loader.hide {
+  opacity: 0;
+  pointer-events: none;
 }
 #loader h1{
   font-size: 4vw;
@@ -373,7 +469,10 @@
 #loader h1:nth-child(3){
     animation-delay: 3s;
 }
-
+/* Cursor pointer on preview to indicate clickable */
+#preview {
+  cursor: pointer;
+}
 @keyframes load {
     0%{
         opacity: 0;
@@ -391,10 +490,121 @@
 
 
 #outer {
-  overflow-x: hidden;
-  min-height: 100vh;
+  overflow:hidden;
+  padding-bottom: 90vh;
+  height: fit-content;
   width: 100%;
-  background-color: black;
+  background-color: white;
   position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: green;
+  z-index:10;
 }
 
+
+/* Focus styles for buttons and links */
+button:focus,
+input[type="file"]:focus,
+label:focus,
+a:focus {
+  outline: 2px solid orange;
+  outline-offset: 2px;
+  outline-color: orangered;
+  outline-style: solid;
+}
+
+/* Consistent focus outlines on buttons */
+#input_btn:focus,
+#removeBtn:focus,
+#submitBtn:focus {
+  outline: 2px solid orangered;
+  outline-offset: 3px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  #img {
+    width: 80vw !important;
+    height: auto !important;
+    left: 10% !important;
+  }
+  #page1 {
+    height: auto !important;
+    padding: 2vw !important;
+  }
+  .page1content {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4vw !important;
+    padding-top: 10vw !important;
+  }
+  .page1content #left {
+    width: 100% !important;
+    align-items: center !important;
+    padding: 2vw !important;
+  }
+  .page1content #left h3 {
+    font-size: 5vw !important;
+    line-height: 6vw !important;
+    text-align: center !important;
+    padding-left: 0 !important;
+  }
+  .page1content #left p {
+    font-size: 4vw !important;
+    text-align: center !important;
+    height: auto !important;
+  }
+  .page1content video {
+    height: 30vh !important;
+  }
+  #main {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  #main #left, #main #right {
+    height: auto !important;
+    width: 100% !important;
+    border: none !important;
+    margin-top: 2vw !important;
+  }
+  #leftcontent h4 {
+    font-size: 4vw !important;
+  }
+  #input_btn,
+  #removeBtn,
+  #submitBtn {
+    width: 70vw !important;
+    max-width: 300px !important;
+    font-size: 4vw !important;
+    height: 42px !important;
+    border-radius: 5vw !important;
+    margin: 3vw auto !important;
+    display: block !important;
+    position: static !important;
+  }
+  .footer h3 {
+    font-size: 7vw !important;
+  }
+  .footer h1 {
+    font-size: 15vw !important;
+  }
+  .dropdown a {
+    font-size: 3vw !important;
+  }
+}
+.c-scrollbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.05);
+  z-index:50;
+  border-radius: 3px;
+}
+
+.c-scrollbar_thumb {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  width: 100%;
+}

@@ -3,7 +3,9 @@
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-Deep%20Learning-orange?logo=tensorflow)](https://www.tensorflow.org/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-Frontend-yellow?logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![HTML5](https://img.shields.io/badge/HTML5-Markup-red?logo=html5)
+![CSS3](https://img.shields.io/badge/CSS3-Styles-blue?logo=css3)
+![GSAP](https://img.shields.io/badge/GSAP-Animations-green?logo=greensock)
 
 > A **deep learning pipeline** that extracts and digitizes text from handwritten images using **CNN** and **Bidirectional GRU**, deployed on a custom-built frontend for an **interactive handwritten-to-digital conversion experience**.
 
@@ -14,6 +16,16 @@
 
 ---
 
+## 📸 Demo Preview
+
+### 🎥 Live Demo GIF  
+*(Replace `demo.gif` with your actual GIF demo)*  
+![Demo GIF](assets/demo.gif)
+
+### 🖼️ Screenshots
+| Upload Handwritten Image | Digital Text Output |
+|--------------------------|--------------------|
+| ![Upload Screenshot](assets/upload.png) | ![Output Screenshot](assets/output.png) |
 
 ---
 

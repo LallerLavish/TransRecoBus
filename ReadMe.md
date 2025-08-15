@@ -49,5 +49,5 @@
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/your-username/handwritten-text-conversion.git
-cd handwritten-text-conversion
+git clone https://github.com/LallerLavish/TransRecoBus.git
+cd TransRecoBus

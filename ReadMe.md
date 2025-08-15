@@ -16,16 +16,6 @@
 
 ---
 
-## 📸 Demo Preview
-
-### 🎥 Live Demo GIF  
-*(Replace `demo.gif` with your actual GIF demo)*  
-![Demo GIF](assets/demo.gif)
-
-### 🖼️ Screenshots
-| Upload Handwritten Image | Digital Text Output |
-|--------------------------|--------------------|
-| ![Upload Screenshot](assets/upload.png) | ![Output Screenshot](assets/output.png) |
 
 ---
 
